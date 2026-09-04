@@ -24,7 +24,7 @@
 
 ## 🎮 اجرای بازی
 
-- [🚀 اجرای بازی در سایت سوکورو](https://sukuru.ir/tools/solar-system-game/)
+- [🚀 اجرای بازی در سایت سوکورو](https://sukuru.ir/app/solar-system-game/)
 - [💻 اجرای نسخه GitHub Pages](https://sukuru99.github.io/solar-system-game/)
 
 - ## 📱 نکته برای کاربران موبایل
