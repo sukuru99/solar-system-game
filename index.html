@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی منظومه شمسی سوکورو</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+</head>
+<body>
+    <div class="game-container">
+
+        <header class="game-header">
+            <h1>بازی منظومه شمسی</h1>
+            <p class="subtitle">سیارات را در مدار درست خود به دور خورشید قرار دهید. سیاره در مدار درست می چرخد.</p>
+        </header>
+
+        <main class="game-main">
+            <div class="planet-dock">
+                <h2>سیارات</h2>
+                <div class="planet-area">
+                    <img src="images/mercury.webp" class="planet mercury" alt="عطارد">
+                    <img src="images/venus.webp" class="planet venus" alt="زهره">
+                    <img src="images/earth.webp" class="planet earth" alt="زمین">
+                    <img src="images/mars.webp" class="planet mars" alt="مریخ">
+                    <img src="images/jupiter.webp" class="planet jupiter" alt="مشتری">
+                    <img src="images/saturn.webp" class="planet saturn" alt="زحل">
+                    <img src="images/uranus.webp" class="planet uranus" alt="اورانوس">
+                </div>
+            </div>
+
+            <div class="solar-system">
+                <div class="system-area">
+                    <img src="images/sun.webp" class="sun" alt="خورشید">
+
+                    <div class="orbit orbit-1"></div>
+                    <div class="orbit orbit-2"></div>
+                    <div class="orbit orbit-3"></div>
+                    <div class="orbit orbit-4"></div>
+                    <div class="orbit orbit-5"></div>
+                    <div class="orbit orbit-6"></div>
+                    <div class="orbit orbit-7"></div>
+                </div>
+            </div>
+        </main>
+        <div class="sukuru-links">
+            <a href="https://sukuru.ir/">دنیای سوکورو</a>
+            <a href="https://sukuru.ir/solar-system-game-guide">درباره سیارات</a>
+            <a href="https://github.com/">گیتهاب بازی</a>
+        </div>
+    </div>
+    <div class="planet-info-overlay" hidden>
+        <div class="planet-info-box">
+            <h2 class="planet-info-title"></h2>
+            <p class="planet-info-description"></p>
+            <button type="button" class="planet-info-btn">خواندم</button>
+        </div>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>

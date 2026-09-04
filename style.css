@@ -1,0 +1,434 @@
+@font-face {
+    font-family: "Vazir";
+    src: url(font/Vazirmatn-Regular.woff2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Vazir;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.game-header h1 {
+    font-size: 28px;
+    color: #f5f6fa;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: #a4b0be;
+}
+
+.game-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex: 1;
+}
+
+.planet-dock {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 15px;
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.planet-dock h2 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #dfe4ea;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.planet-dock .planet-area {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    overflow-y: auto;
+    padding: 5px;
+}
+
+.solar-system {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.solar-system .system-area {
+    position: relative;
+    width: 750px;
+    height: 500px;
+}
+
+.sun {
+    position: absolute;
+    width: 66px;
+    height: 66px;
+    object-fit: contain;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.5));
+}
+
+.orbit {
+    position: absolute;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: border-color 0.3s ease;
+}
+
+.orbit.near {
+    border-color: #ffa502;
+    border-style: solid;
+    box-shadow: 0 0 10px rgba(255, 165, 2, 0.3);
+}
+
+.orbit.correct {
+    border-color: #2ed573;
+    border-style: solid;
+    box-shadow: 0 0 12px rgba(46, 213, 115, 0.4);
+}
+
+.orbit.wrong {
+    border-color: #ff4757;
+    border-style: solid;
+}
+
+.orbit-1 {
+    width: 220px;
+    height: 140px;
+}
+
+.orbit-2 {
+    width: 310px;
+    height: 200px;
+}
+.orbit-3 {
+    width: 400px;
+    height: 260px;
+}
+.orbit-4 {
+    width: 490px;
+    height: 320px;
+}
+.orbit-5 {
+    width: 580px;
+    height: 380px;
+}
+.orbit-6 {
+    width: 670px;
+    height: 440px;
+}
+.orbit-7 {
+    width: 750px;
+    height: 500px;
+}
+
+.planet {
+    position: absolute;
+    object-fit: contain;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    transition: transform 0.2s ease;
+    z-index: 10;
+}
+
+.planet:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+}
+
+.earth {
+    width: 55px;
+}
+
+.jupiter {
+    width: 85px;
+    top: 15%;
+}
+
+.mercury {
+    width: 35px;
+    top: 36%;
+}
+.uranus {
+    width: 88px;
+    top: 43%;
+}
+.venus {
+    width: 52px;
+    top: 87%;
+}
+.saturn {
+    width: 92px;
+    top: 69%;
+}
+.mars {
+    width: 45px;
+    top: 62%;
+}
+.earth.placed {
+    width: 42px;
+}
+.jupiter.placed {
+    width: 65px;
+}
+.mercury.placed {
+    width: 28px;
+}
+.uranus.placed {
+    width: 52px;
+}
+.venus.placed {
+    width: 39px;
+}
+.saturn.placed {
+    width: 68px;
+}
+.mars.placed {
+    width: 36px;
+}
+
+.planet-info-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.planet-info-overlay[hidden] {
+    display: none;
+}
+
+.planet-info-box {
+    width: 85%;
+    max-width: 380px;
+    padding: 30px 15px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transform: scale(0.95);
+    animation: scaleUp 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.planet-info-title {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.planet-info-description {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.planet-info-btn {
+    width: 50%;
+    padding: 14px;
+    border: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    font-family: inherit;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sukuru-links {
+    display: flex;
+    justify-content: flex-start;
+    gap: 35px;
+    margin-top: 15px;
+}
+
+.sukuru-links a {
+    color: #a4b0be;
+    text-decoration: none;
+}
+
+.sukuru-links a:hover {
+    color: #2ed573;
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 5px;
+    }
+    .game-header {
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+    .game-main {
+        flex-direction: column-reverse;
+        gap: 15px;
+    }
+    .planet-dock {
+        width: 100%;
+        padding: 10px;
+    }
+    .planet-dock h2 {
+        margin-bottom: 8px;
+    }
+    .planet-dock .planet-area {
+        height: 100px;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    .planet-area .planet {
+        position: relative;
+        top: auto;
+        left: auto;
+        flex-shrink: 0;
+    }
+    .solar-system {
+        width: 100%;
+    }
+    .solar-system .system-area {
+        width: 100%;
+        height: 600px;
+    }
+    .orbit {
+        border-width: 1px;
+    }
+    .orbit-1 {
+        width: 24%;
+        height: 100px;
+    }
+    .orbit-2 {
+        width: 36%;
+        height: 180px;
+    }
+    .orbit-3 {
+        width: 48%;
+        height: 260px;
+    }
+    .orbit-4 {
+        width: 60%;
+        height: 340px;
+    }
+    .orbit-5 {
+        width: 72%;
+        height: 420px;
+    }
+    .orbit-6 {
+        width: 84%;
+        height: 500px;
+    }
+    .orbit-7 {
+        width: 96%;
+        height: 580px;
+    }
+    .sun {
+        width: 52px;
+        height: 52px;
+    }
+    .sukuru-links {
+        justify-content: center;
+        gap: 17px;
+        margin-bottom: 15px;
+        font-size: 15px;
+        flex-wrap: wrap;
+    }
+    .earth.placed {
+        width: 38px;
+    }
+    .jupiter.placed {
+        width: 60px;
+    }
+    .mercury.placed {
+        width: 25px;
+    }
+    .uranus.placed {
+        width: 48px;
+    }
+    .venus.placed {
+        width: 35px;
+    }
+    .saturn.placed {
+        width: 62px;
+    }
+    .mars.placed {
+        width: 31px;
+    }
+}
